@@ -40,8 +40,15 @@ public class EmployeeController {
 	
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form) {
+		System.out.println(form);
 		int employeeId = Integer.parseInt(form.getId());
 		Employee employee = service.showDetail(employeeId);
+		employee.setMailAddress(form.getMailAddress());
+		employee.setZipCode(form.getZipCode());
+		employee.setAddress(form.getAddress());
+		employee.setTelephone(form.getTelephone());
+		employee.setSalary(form.getSalary());
+		employee.setCharacteristics(form.getCharacteristics());
 		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
 		service.update(employee);
 		return "redirect:showList";
